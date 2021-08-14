@@ -2,6 +2,7 @@ package zeus.dispatch.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 import zeus.dispatch.DispatchEngine;
 import zeus.entry.dto.TaskDTO;
 import zeus.rpc.RPCService;
@@ -11,6 +12,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+@Component
 public class ScheduleExecuteDispatchEngine implements DispatchEngine {
 
     @Autowired
