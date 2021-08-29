@@ -11,6 +11,8 @@
     <modules>
         <module>zeus-client</module>
         <module>zeus-core</module>
+        <module>zeus-manager</module>
+        <module>zeus-common</module>
     </modules>
 
     <properties>

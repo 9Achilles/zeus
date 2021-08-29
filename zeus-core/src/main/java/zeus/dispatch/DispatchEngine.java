@@ -4,14 +4,20 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 //任务配置  ---  任务提交（触发执行）  ---  任务进队   ---   任务执行  ---  任务回显记录
-//
+//job   rpc任务
+//task  定时任务
 public interface DispatchEngine {
 
 
-    boolean executeDelayTask(String url, long start, long period, TimeUnit unit,
-                             Map<String, String> headers, Map<String, Object> body, String charset);
+    boolean addTask(Long jobId);
 
-    boolean executeTask(String taskId);
+
+    boolean deleteTask(String jobId);
+
+
+    boolean stopTask(String jobId);
+
+    boolean reStartTask(String jobId);
 
 
 }

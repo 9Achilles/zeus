@@ -5,8 +5,10 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import zeus.dispatch.DispatchEngine;
 import zeus.entry.dto.TaskDTO;
+import zeus.lock.zk.ZKLockUtil;
 import zeus.rpc.RPCService;
 
+import javax.annotation.Resource;
 import java.util.Map;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -20,17 +22,22 @@ public class ScheduleExecuteDispatchEngine implements DispatchEngine {
     private RPCService rpcService;
 
     //定时任务队列
-    private final static ScheduledExecutorService scheduledDelayExecutor = Executors.newScheduledThreadPool(10);
+    private final static ScheduledExecutorService scheduledDelayExecutor = Executors.newScheduledThreadPool(200);
 
 
-
+    //添加调度任务
     @Override
-    public boolean executeDelayTask(String url, long start, long period, TimeUnit unit,
-                                    Map<String, String> headers, Map<String, Object> body, String charset) {
+    public boolean addTask(Long jobId) {
         try {
+            long start = 0;
+            long period = 0;
+            TimeUnit unit = null;
             //任务入队
             submitTask(scheduledDelayExecutor, () -> {
-                rpcService.doPost(url, headers, body, charset);
+                boolean check = ZKLockUtil.lock(String.valueOf(jobId));
+                if(check){
+                    rpcService.doPost(jobId);
+                }
             }, start, period, unit);
             return true;
         } catch (Exception exception) {
@@ -38,16 +45,34 @@ public class ScheduleExecuteDispatchEngine implements DispatchEngine {
         }
     }
 
+    //delete task
     @Override
-    public boolean executeTask(String taskId) {
-        //查询该任务详情 ip port url param
-        TaskDTO dto = null;
-        //生成任务
-        Runnable command = null;
-        //rpcService.doPost();
-        //submitTask(scheduledExecutor, command, 0, 0, TimeUnit.MILLISECONDS);
+    public boolean deleteTask(String jobId) {
+
+        //stop task
+
+
+        //delete task
+
         return false;
     }
+
+    @Override
+    public boolean stopTask(String jobId) {
+
+        //stop task
+
+        return false;
+    }
+
+    @Override
+    public boolean reStartTask(String jobId) {
+
+        // re start job
+
+        return false;
+    }
+
 
     private boolean submitTask(ScheduledExecutorService scheduledExecutor, Runnable command, long start, long period, TimeUnit unit) {
         try {

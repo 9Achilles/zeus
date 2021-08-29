@@ -9,8 +9,8 @@ import java.lang.annotation.Target;
 @Target(ElementType.METHOD)
 public @interface ZeusSchedule {
 
-    String applicationName();
-
-    String applicationCode();
+//    String applicationName();
+//
+//    String applicationCode();
 
 }
