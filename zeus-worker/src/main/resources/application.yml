@@ -1,0 +1,34 @@
+spring:
+  application:
+    name: zeue-worker
+  kafka:
+    bootstrap-servers: 127.0.0.1:9092
+    producer:
+      acks: 1
+      retries: 0
+      batch-size: 16384
+      properties:
+        linger:
+          ms: 0
+      buffer-memory: 33554432
+      key-serializer: org.apache.kafka.common.serialization.StringSserializer
+      value-serializer: org.apache.kafka.common.serialization.StringSserializer
+    consumer:
+      properties:
+        group:
+          id: defaultConsumerGroup
+      enable-auto-commit: true
+      auto-offset-reset: latest
+      auto-commit-interval: 1000
+      key-deserializer: org.apache.kafka.common.serialization.StringSserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringSserializer
+zookeeper:
+  host: 127.0.0.1:2173
+  retries: 3
+  sessionTimeOut: 30000
+  connectionTimeOut: 30000
+server:
+  port: 8018
+
+
+

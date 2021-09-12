@@ -1,8 +1,6 @@
 package zeus.annotation;
 
-import org.springframework.context.annotation.Import;
-import zeus.config.EnableZeusConfigSelector;
-import zeus.constant.ZeusDeptConstant;
+import zeus.constant.ZeusZKDeptConstant;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -10,10 +8,9 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
-@Import(EnableZeusConfigSelector.class)
 public @interface EnableZeus {
 
-    String dept() default ZeusDeptConstant.ZEUS_PUBLIC_DEPT;
+    String dept() default ZeusZKDeptConstant.ZEUS_PUBLIC_DEPT;
 
     String name() default "";
 

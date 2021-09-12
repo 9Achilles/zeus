@@ -1,27 +1,23 @@
 package zeus.service;
 
 import zeus.entry.Response;
-import zeus.entry.qo.*;
+import zeus.entry.qo.ZeusTaskQO;
+import zeus.entry.vo.ZeusTasksVO;
 
 public interface ZeusTaskService {
 
-    Response createTask(CreateTaskQO createTaskQO);
+    Response createTask(ZeusTaskQO createTaskQO);
 
     Response deleteTask(Long taskId);
 
-    Response updateTask(UpdateTaskQO updateTaskQO);
+    Response updateTask(ZeusTaskQO updateTaskQO);
 
-    Response queryByPage(QueryTaskPageQO queryTaskPageQO);
+    Response<ZeusTasksVO> queryByPage(ZeusTaskQO queryTaskPageQO);
 
     Response queryById(Long taskId);
 
-    Response stopTask(StopTaskQO stopTaskQO);
+    Response runTask(ZeusTaskQO runTaskQO);
 
-    Response runTask(RunTaskQO runTaskQO);
-
-    Response enableTask(RunTaskQO runTaskQO);
-
-    Response queryJobByTaskId(Long taskId);
 
 
 
