@@ -31,7 +31,7 @@ public final class ZeusWorkerRPCCallBack implements FutureCallback<HttpResponse>
             String data = bytes.toString();
             kafkaTemplate.send("ZEUS_RPC_SUCCESS",data);
         } catch (IOException e) {
-            throw new ZeusWorkerException(e.getMessage());
+            //throw new ZeusWorkerException(e.getMessage());
         }
     }
 
