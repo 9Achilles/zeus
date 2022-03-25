@@ -2,7 +2,9 @@ package zeus;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import zeus.config.annotation.EnableZeus;
 
 /**
  * 1 找一个worker，定时调度，corn时间表达式
@@ -11,8 +13,9 @@ import org.springframework.scheduling.annotation.EnableScheduling;
  *
  *
  */
-@EnableScheduling
+//@EnableAsync
 @SpringBootApplication
+@EnableZeus
 public class ZeusServerApplication {
 
     public static void main(String[] args) {
