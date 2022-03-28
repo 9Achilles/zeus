@@ -3,8 +3,10 @@ server:
 zeus:
   register:
     address: 127.0.0.1:9014,127.0.0.1:9015
-
   provider:
     key: zeus
     ip: 127.0.0.1
     port: 9013
+  server:
+    ip: 127.0.0.1
+    port: 9014
