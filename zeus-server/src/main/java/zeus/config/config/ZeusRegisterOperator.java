@@ -7,12 +7,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import zeus.constant.ZeusCommonConstant;
 import zeus.util.AddressUtil;
-
-import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 
 /**
  * @author lym
@@ -26,7 +22,7 @@ public class ZeusRegisterOperator {
     @Resource
     private ZeusProviderProperties zeusProviderProperties;
 
-    private final ScheduledExecutorService scheduled = Executors.newScheduledThreadPool(1);
+    private final ScheduledExecutorService scheduled =  new ScheduledThreadPoolExecutor(1);
 
     private static class ZeusRegisterProperties {
 
@@ -103,7 +99,7 @@ public class ZeusRegisterOperator {
         return new ZeusProviderProperties();
     }
 
-    @PostConstruct
+
     public void register() {
 
         scheduled.scheduleAtFixedRate(() -> {

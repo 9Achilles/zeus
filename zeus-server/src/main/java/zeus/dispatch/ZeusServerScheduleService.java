@@ -43,6 +43,8 @@
 //        Date nextMinute = DateUtil.getTime(Calendar.MINUTE, 1);
 //        Date currentTime = new Date();
 //
+          //redis拿锁 拿到就执行下面的步骤  拿不到就不执行
+
 //        List<ZeusTaskDTO> zeusTaskDTOS = zeusTaskManager.queryByExecuteTime(currentTime);
 //
 //        zeusTaskDTOS.stream().parallel().forEach(
